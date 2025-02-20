@@ -1,5 +1,6 @@
 import { getAllBookmarks } from "@/lib/bookmarkApi";
 import { BookmarkType, BookmarksResponse } from "@/types";
+import Bookmarks from "@/app/components/Bookmarks";
 
 type Props = {
   searchParams: { page: string }
@@ -13,14 +14,7 @@ export default async function BookmarkPage(props: Props)  {
 
   return (
     <div>
-        <h1>Welcome to Bookmarker</h1>
-        {
-          bookmarks.map(bookmark => {
-            return (
-                <h2 key={bookmark.id}>{bookmark.title}</h2>
-            )
-          })
-        }
+      <Bookmarks bookmarks={bookmarks} />
     </div>
   );
 }
