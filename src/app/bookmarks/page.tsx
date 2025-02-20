@@ -1,6 +1,7 @@
+
 import { getAllBookmarks } from "@/lib/bookmarkApi";
 import { BookmarksResponse } from "@/types";
-import Bookmarks from "@/app/components/Bookmarks";
+import Bookmarks from '../components/Bookmarks';
 
 type Props = {
   searchParams: { page: string }
@@ -9,13 +10,14 @@ type Props = {
 export default async function BookmarkPage(props: Props)  {
   const { page = 1 } = props.searchParams
   const bookmarksData: Promise<BookmarksResponse> = getAllBookmarks(parseInt(String(page)))
+  const bookmarksRes = await bookmarksData
+
   // const { data } = await bookmarksData
   // const bookmarks: BookmarkType[] = data
-  const bookmarksRes = await bookmarksData
 
   return (
     <div>
-      <Bookmarks bookmarks={bookmarksRes} />
+        <Bookmarks bookmarks={bookmarksRes} />
     </div>
   );
 }
